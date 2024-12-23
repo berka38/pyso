@@ -92,12 +92,12 @@ def index(request):
     
 
 
-def generate_graphs(request):
-    media_items = Medic.objects.all().order_by('-uploaded_at')
+def detail(request, id):
+    media_items = Medic.objects.get(id=id)
 
     # Görselleri şablona gönder
     context = {
         'media_items': media_items,
     }
 
-    return render(request, 'home/graph.html', context)
+    return render(request, 'home/detail.html', context)

@@ -13,7 +13,7 @@ urlpatterns = [
     # The home page
     path('', views.index, name='home'),
     # Matches any html file
-    path('graph', views.generate_graphs, name='graph'),
+    path('detail/<int:id>', views.detail, name='detail'),
     #re_path(r'^.*\.*', views.pages, name='pages'),
 
     
