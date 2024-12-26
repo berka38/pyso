@@ -8,6 +8,9 @@ from .models import Medic
 
 # Register your models here.
 
-admin.site.register(Medic)
+@admin.register(Medic)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('Title', 'video', 'img', 'user')
+    list_filter = ('tickets',)  # Kategorilere göre filtreleme
 
 

@@ -12,8 +12,8 @@
 			<div class="page-inner py-5">
 				<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 					<div>
-						<h2 class="text-white pb-2 fw-bold row">Bakiyeniz: <p class="ml-2 h2 fw-bold text-success">₺ {{ user_balance }}</p></h2>
-						<h5 class="text-white op-7 mb-2">Ücretsiz Sinyal İşleme Sistemi</h5>
+						<h2 class="text-white pb-2 fw-bold row">Geçmiş olsun<p class="ml-2 h2 fw-bold text-success"> dileklerimizle</p></h2>
+						<h5 class="text-white op-7 mb-2">Physipros</h5>
 					</div>
 					<div class="ml-md-auto py-2 py-md-0">
 
@@ -28,9 +28,7 @@
 							<a href="/admin" class="btn btn-white btn-border btn-round mr-2">Admin</a>
 	
 	
-							<button type="button" class="btn btn-success btn-round ml-2" data-toggle="modal" data-target="#incomeModal">
-								<i class="fas fa-plus"></i> Sinyal Ekle
-							</button>
+							
 
 						</div>
 
@@ -77,7 +75,7 @@
 														<p class="">Toplam data</p>
 												</div>
 												<div class="col-12 col-stats">
-													<h4 class="card-title">{{ totalData }}</h4>
+													<h4 class="card-title">{{ medic_count }}</h4>
 												</div>
 											</div>
 	
@@ -163,6 +161,18 @@
 				</div>
 
 			</div>
+
+			<div class="col-12 d-flex justify-content-center my-3 row">
+				<a href="/" class="badge badge-primary mx-3 d-flex my-3 " style="font-size:1rem;">Hepsi</a>
+
+				{% for category in all_categories %}
+				<a href="?category={{ category }}" class="badge badge-primary mx-3 d-flex my-3 " style="font-size:1rem;">{{category}}</a>
+            	{% endfor %}
+			</div>
+
+
+
+
 
 			<!-- medic -->
 

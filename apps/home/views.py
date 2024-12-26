@@ -26,26 +26,22 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
 datat = {
-    "prod":[
+    "badges":[
         {
             "name":"deneme",
-            "position":"dada",
-            "office": "dalton"
+            "url":"dada",
         },
         {
             "name":"deneme1",
-            "position":"dad1",
-            "office": "dalton1"
+            "url":"dad1",
         },
         {
             "name":"deneme2",
-            "position":"dada2",
-            "office": "dalton2"
+            "url":"dada2",
         },
         {
             "name":"deneme3",
-            "position":"dada3",
-            "office": "dalton3"
+            "url":"dada3",
         },
     ]
 }
@@ -70,6 +66,20 @@ def index(request):
 
 
 
+    category = request.GET.get('category')  # URL'deki kategori parametresini al
+    if category:
+        media_items = Medic.objects.filter(tickets=category)  # Kategoriye göre filtreleme
+    else:
+        media_items = Medic.objects.all()  # Tüm postlar
+    all_categories = Medic.objects.values_list('tickets', flat=True).distinct()  # Tüm kategorileri getir
+
+
+
+
+
+
+
+
 
     # Sayfa render edilirken, kullanıcı bilgileri burada alınabilir
     profile = Profile.objects.get(user=request.user)
@@ -83,7 +93,8 @@ def index(request):
     'usersCount':User.objects.count(),
     'segment': 'index',
     'media_items': media_items,
-
+    'all_categories': all_categories,
+    'medic_count':Medic.objects.count(),
     }
     
 

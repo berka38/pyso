@@ -31,12 +31,26 @@ class job(models.Model):
     
 
 class Medic(models.Model):
+    CATEGORY_CHOICES = [
+        ('boş', 'Lütfen bir hastalık seçiniz'),
+        ('fıtık', 'Fıtık'),
+        ('donuk', 'Donuk'),
+        ('osteoartriti', 'Kireçlenme'),
+        ('inme', 'Felç'),
+        ('skolyoz', 'Skolyoz'),
+        ('romatoid', 'Romatoid'),
+        ('parkinson', 'Parkinson'),
+    ]
     Title = models.CharField(max_length=50)
     video = models.FileField(upload_to='uploads/')  # Dosyanın yükleneceği klasör
     img = models.FileField(upload_to='uploads/')  # Dosyanın yükleneceği klasör
     uploaded_at = models.DateTimeField(auto_now_add=True)  # Yükleme zamanı
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Kullanıcı bilgisi
-    tickets = models.CharField(max_length=50)
+    tickets =  models.CharField(
+        max_length=100,
+        choices=CATEGORY_CHOICES,  # Seçenekler eklendi
+        default='boş'  # Varsayılan değer
+    )
 
     def __str__(self):
         return f"Yükleyen {self.user.username}, zaman {self.uploaded_at}. "
