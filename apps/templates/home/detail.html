@@ -25,6 +25,54 @@
                     sisteminiz bu videoyu desteklemiyor.
                 </video>
             </div>
+
+            <div class="col-12 d-flex justify-content-end">
+                <h3 class="mx-1" style="color:green;">Süre </h3>
+                <h3>{{media_items.time}}</h3>
+            </div>
+
+            <div class="col-12 row m-3">
+                <h1 class="mx-1" style="color:green;">Açıklama </h1>
+                <p>{{media_items.about}}</p>
+            
+            </div>
+
+
+            <div class="col-12 my-5 d-flex justify-content-center">
+
+
+                <!-- önceki Video Düğmesi -->
+                {% if previous_post %}
+
+                    <a href="{% url 'detail' previous_post.id %}" class="btn btn-outline-primary">
+                        <i class="bi bi-arrow-left"></i> Önceki Video
+                    </a>
+                {% else %}
+                    <button class="btn btn-outline-secondary" disabled>
+                        <i class="bi bi-arrow-left"></i> Önceki Video Yok
+                    </button>
+
+                {% endif %}
+
+
+
+
+                <!-- Sonraki Video Düğmesi -->
+                {% if next_post %}
+                    <a href="{% url 'detail' next_post.id %}" class="btn btn-outline-success">
+                        Sonraki Video <i class="bi bi-arrow-right"></i>
+                    </a>
+                {% else %}
+                    <button class="btn btn-outline-secondary" disabled>
+                        Sonraki Video Yok <i class="bi bi-arrow-right"></i>
+                    </button>
+                {% endif %}
+
+            
+            </div>
+
+
+
         </div>
 
     </div>

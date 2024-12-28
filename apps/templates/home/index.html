@@ -195,7 +195,7 @@
 									<h5 class="card-title">{{ item.Title }}</h5>
 									<p class="uploader-name">{{item.user}}</p>
 									<p class="card-text">{{item.uploaded_at}}</p>
-									<a href="#" class="btn btn-primary">Detaylara Git</a>
+									<a href="{% url 'detail' item.id %}" class="btn btn-primary">Detaylara Git</a>
 								</div>
 							</div>
 							{% endfor %}

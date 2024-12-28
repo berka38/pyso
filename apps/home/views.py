@@ -106,9 +106,15 @@ def index(request):
 def detail(request, id):
     media_items = Medic.objects.get(id=id)
 
+
+    next_post = Medic.objects.filter(tickets=media_items.tickets, id__gt=media_items.id).order_by('id').first()
+    previous_post = Medic.objects.filter(tickets=media_items.tickets, id__lt=media_items.id).order_by('-id').first()
+
     # Görselleri şablona gönder
     context = {
         'media_items': media_items,
+        'next_post': next_post,
+        'previous_post': previous_post,
     }
 
     return render(request, 'home/detail.html', context)

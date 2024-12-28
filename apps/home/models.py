@@ -24,7 +24,6 @@ class job(models.Model):
     Finish = models.BooleanField()
     Spend = models.IntegerField()
     Income = models.IntegerField()
-    
     Jobs = models.ForeignKey(Profile, related_name="jobs", on_delete=models.CASCADE)
 
 
@@ -43,9 +42,11 @@ class Medic(models.Model):
     ]
     Title = models.CharField(max_length=50)
     video = models.FileField(upload_to='uploads/')  # Dosyanın yükleneceği klasör
+    about = models.TextField()
     img = models.FileField(upload_to='uploads/')  # Dosyanın yükleneceği klasör
     uploaded_at = models.DateTimeField(auto_now_add=True)  # Yükleme zamanı
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Kullanıcı bilgisi
+    time = models.DurationField()    
     tickets =  models.CharField(
         max_length=100,
         choices=CATEGORY_CHOICES,  # Seçenekler eklendi
