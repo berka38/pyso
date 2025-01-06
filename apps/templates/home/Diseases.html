@@ -1,0 +1,54 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Ana sayfa {% endblock %} 
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="content " >
+
+        <div class="panel-header bg-primary-gradient">
+			<div class="page-inner py-5">
+				<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+					<div>
+						<h2 class="text-white pb-2 fw-bold row">Geçmiş olsun<p class="ml-2 h2 fw-bold text-success"> dileklerimizle</p></h2>
+						<h5 class="text-white op-7 mb-2">Physipros</h5>
+					</div>
+                </div>
+            </div>
+        </div>
+                        <div class="page-inner mt--5">
+                        {%for item in media_items%}
+
+                            <div class="card mx-auto" style="width: 18rem;">
+                                <img src="{{ item.img.url }}" class="card-img-top" alt="{{ item.Title }}">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">{{ item.Title }}</h5>
+                                    <p class="uploader-name">{{item.user}}</p>
+                                    <p class="card-text">{{item.uploaded_at}}</p>
+                                    <a href="{% url 'detail' item.id %}" class="btn btn-primary">Detaylara Git</a>
+                                </div>
+                            </div> 
+
+                        {%endfor%}
+                    </div>
+               
+    </div>
+
+{% endblock %}
+
+<!-- <div class="content"></div> -->
+
+
+
+
+ <!--  <div class="card mx-auto" style="width: 18rem;">
+    <img src="{{ item.img.url }}" class="card-img-top" alt="{{ item.Title }}">
+    <div class="card-body text-center">
+        <h5 class="card-title">{{ item.Title }}</h5>
+        <p class="uploader-name">{{item.user}}</p>
+        <p class="card-text">{{item.uploaded_at}}</p>
+        <a href="{% url 'detail' item.id %}" class="btn btn-primary">Detaylara Git</a>
+    </div>
+</div> -->

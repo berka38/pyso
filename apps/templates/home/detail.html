@@ -1,0 +1,112 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Ana sayfa {% endblock %} 
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="content " >
+
+        
+      
+
+
+        <div class="container-fluid mt-5">
+            <div class="text-center mb-4">
+                <h1 class="fs-2 fw-bold">{{ media_items.Title }}</h1>
+                <p class="text-muted">{{ media_items.user }}</p>
+                <p class="text-muted">Tarih: {{ media_items.uploaded_at }}</p>
+            </div>
+    
+            <div class="ratio ratio-16x9 mx-auto" style="max-width: 100%;">
+                <video controls class="w-100">
+                    <source src="{{ media_items.video.url }}" type="video/mp4">
+                    sisteminiz bu videoyu desteklemiyor.
+                </video>
+            </div>
+
+            <div class="col-12 d-flex justify-content-end">
+                <h3 class="mx-1" style="color:green;">Süre </h3>
+                <h3>{{media_items.time}}</h3>
+            </div>
+
+            <div class="col-12 row m-3">
+                <h1 class="mx-1" style="color:green;">Açıklama </h1>
+                <p>{{media_items.about}}</p>
+            
+            </div>
+
+
+            <div class="col-12 my-5 d-flex justify-content-center">
+
+
+                <!-- önceki Video Düğmesi -->
+                {% if previous_post %}
+
+                    <a href="{% url 'detail' previous_post.id %}" class="btn btn-outline-primary">
+                        <i class="bi bi-arrow-left"></i> Önceki Video
+                    </a>
+                {% else %}
+                    <button class="btn btn-outline-secondary" disabled>
+                        <i class="bi bi-arrow-left"></i> Önceki Video Yok
+                    </button>
+
+                {% endif %}
+
+
+
+
+                <!-- Sonraki Video Düğmesi -->
+                {% if next_post %}
+                    <a href="{% url 'detail' next_post.id %}" class="btn btn-outline-success">
+                        Sonraki Video <i class="bi bi-arrow-right"></i>
+                    </a>
+                {% else %}
+                    <button class="btn btn-outline-secondary" disabled>
+                        Sonraki Video Yok <i class="bi bi-arrow-right"></i>
+                    </button>
+                {% endif %}
+
+            
+            </div>
+            
+            <div>
+                <div class="my-5">
+                    <form id="spendForm" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="form_type" value="comments">
+                        <label for="inputPassword5">Yorum</label>
+                        <input type="text" name="commentPost" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                        Bir yorum göndermeye ne dersin?
+                        </small>
+                        <button type="submit" class="btn btn-success">Gönder</button>
+                    </form>
+                </div>
+                {% for i in comments %}
+
+                    <div class="card">
+                        <div class="card-header">
+                        {{ i.uploaded_at }}
+                        </div>
+                        <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>{{i.comment}}</p>
+                            <footer class="blockquote-footer">Kullanıcı: <cite title="Source Title">{{i.user.username}}</cite></footer>
+                        </blockquote>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+<!-- <div class="content"></div> -->
