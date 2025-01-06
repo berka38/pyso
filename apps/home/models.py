@@ -31,6 +31,7 @@ class job(models.Model):
 class Disease(models.Model):
     Title = models.CharField(max_length=50)
     uploaded_at = models.DateTimeField(auto_now_add=True)  # Yükleme zamanı
+    img = models.FileField(upload_to='uploads/')  # Dosyanın yükleneceği klasör
     about = models.TextField()
     CATEGORY_CHOICES = [
         ('boş', 'Lütfen bir hastalık seçiniz'),
